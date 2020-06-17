@@ -10,6 +10,7 @@ const initialState = {
 const Login = (props) => {
   const [user, setUser] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setUser({
@@ -30,6 +31,7 @@ const Login = (props) => {
       })
       .catch((err) => {
         console.log(err);
+        setError(err.message);
       });
   };
 
@@ -52,6 +54,10 @@ const Login = (props) => {
         {isLoading && (
           <Loader type="Rings" color="purple" height={80} width={80} />
         )}
+        {/* error, setError in the catch */}
+        {/* if error is true, then display error */}
+        {error && <div> {error} </div>}
+
         <button>Log in</button>
       </form>
     </div>
